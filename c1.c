@@ -1026,8 +1026,21 @@ int main()
 											printf("\n\n请稍候...");
 											Sleep(1000);
 											system("cls");
-											printf("\n请输入新成员的个人信息：\n姓名\t\t学号\t\t电话\t\tQQ\t\t部门编号\n");
-											scanf("%s %s %s %s %d", info1.name, info1.num, info1.tele, info1.qq,&info1.department_num);
+											while(1)
+                                                                                        {
+                                                                                                printf("\n请输入新成员的个人信息：\n姓名\t\t学号\t\t电话\t\tQQ\t\t部门编号\n");
+                                                                                                scanf("%s %s %s %s %d", info1.name, info1.num, info1.tele, info1.qq,&info1.department_num);
+                                                                                                if (info1.department_num>7 ||  info1.department_num<1)
+                                                                                                {
+                                                                                                        printf("\n\n部门编号输入错误！！请重新输入！！");
+                                                                                                        Sleep(500);
+                                                                                                        system("cls");
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                        break;
+                                                                                                }
+                                                                                        }
 											insertNode(List1, info1);
 											printf("\n\n输入成功！！");
 											Sleep(1000);
@@ -1075,29 +1088,884 @@ int main()
 						}
 						break;
 					case 2:
-						Sleep(1000);
-						system("cls");
-						printf("游戏部：\n\n");
+						while (1)
+						{
+							Sleep(1000);
+							system("cls");
+							num = NULL;
+							printf("游戏部：\n\n");
+							printf("\n1、查看近期任务\n");
+							printf("2、布置任务\n");
+							printf("3、部员管理\n");
+							printf("4、返回\n\n");
+							printf("请选择：");
+							k = scanf("%d", &num);
+							if (num == 4)
+							{
+								printf("\n\n请稍候，正在返回...");
+								Sleep(1000);
+								system("cls");
+								break;
+							}
+							while (1)
+							{
+								while (1)
+								{
+									if ((num != 1 && num != 2 && num != 3 && num != 4 && k == 1) || (k != 1))
+									{
+										if (k != 1)
+										{
+											getchar();
+										}
+										printf("您输入的数字有误！！\n\n");
+										Sleep(1000);
+										system("cls");
+									}
+									else
+									{
+										printf("\n\n请稍后....");
+										Sleep(1000);
+										system("cls");
+										break;
+
+									}
+									num = NULL;
+									printf("游戏部：\n\n");
+									printf("\n1、查看近期任务\n");
+									printf("2、布置任务\n");
+									printf("3、部员管理\n");
+									printf("4、返回\n\n");
+									printf("请重新输入：");
+									k = scanf("%d", &num);
+									break;
+								}
+								switch (num)
+								{
+								case 1:
+									task(choice, num);
+									break;
+								case 2:
+									//布置任务：
+									printf("请输入任务内容：\n");
+									scanf("\t%s", t1);
+									printf("\n\n任务已布置！！");
+									Sleep(1000);
+									system("cls");
+									break;
+								case 3:
+									while (1)
+									{
+										choice1 = NULL;
+										printf("部员管理：\n");
+										printf("\n1、新部员加入\n");
+										printf("2、部员资料修改\n");
+										printf("3、部员删除\n");
+										printf("4、查看部门成员\n");
+										printf("5、返回\n");
+										printf("\n\n请选择：");
+										scanf("%d", &choice1);
+										while (1)
+										{
+											if ((choice1 != 1) && (choice1 != 2) && (choice1 != 3) && (choice1 != 4) && (choice1 != 5)/*&&(scanf("%d",&choice)!=1)*/)
+											{
+												getchar();
+												system("cls");
+												printf("部员管理：\n");
+												printf("\n1、新部员加入\n");
+												printf("2、部员资料修改\n");
+												printf("3、部员删除\n");
+												printf("4、查看部门成员\n");
+												printf("5、返回\n");
+												printf("\n\n输入错误！！\n");
+												printf("请重新输入：");
+												scanf("%d", &choice1);
+												if ((choice1 == 1) || (choice1 == 2) || (choice1 == 3) || (choice1 == 4) || (choice1 == 5))
+												{
+													break;
+												}
+											}
+											else
+											{
+												break;
+											}
+										}
+
+										if (choice1 == 5)
+										{
+											break;
+										}
+										char name_change[20] = "";
+										char name[100] = "";
+										switch (choice1)
+										{
+										case 1:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											while(1)
+                                                                                        {
+                                                                                                printf("\n请输入新成员的个人信息：\n姓名\t\t学号\t\t电话\t\tQQ\t\t部门编号\n");
+                                                                                                scanf("%s %s %s %s %d", info1.name, info1.num, info1.tele, info1.qq,&info1.department_num);
+                                                                                                if (info1.department_num>7 ||  info1.department_num<1)
+                                                                                                {
+                                                                                                        printf("\n\n部门编号输入错误！！请重新输入！！");
+                                                                                                        Sleep(500);
+                                                                                                        system("cls");
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                        break;
+                                                                                                }
+                                                                                        }
+											insertNode(List1, info1);
+											printf("\n\n输入成功！！");
+											Sleep(1000);
+											system("cls");
+											break;
+										case 2:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											printf("请输入您要修改的成员名称：");
+											scanf("%s", name_change);
+											List1 = changeNode(List1, name_change, info1, p1);
+											break;
+										case 3:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											printf("请输入您要删除的学生姓名：");
+											scanf("%s", name);
+											deleteNode(List1, name);
+											Sleep(1000);
+											system("cls");
+											break;
+										case 4:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											printList(List1,choice,info1);
+											printf("\n\n");
+											if (system("pause"))
+											{
+												system("cls");
+
+											}
+											system("cls");
+											break;
+										}
+									}
+									break;
+								case 4:
+									break;
+								}
+								break;
+                                                        }
+						}
 						break;
 					case 3:
-						Sleep(1000);
-						system("cls");
-						printf("硬件部：\n\n");
+						while (1)
+						{
+							Sleep(1000);
+							system("cls");
+							num = NULL;
+							printf("硬件部：\n\n");
+							printf("\n1、查看近期任务\n");
+							printf("2、布置任务\n");
+							printf("3、部员管理\n");
+							printf("4、返回\n\n");
+							printf("请选择：");
+							k = scanf("%d", &num);
+							if (num == 4)
+							{
+								printf("\n\n请稍候，正在返回...");
+								Sleep(1000);
+								system("cls");
+								break;
+							}
+							while (1)
+							{
+								while (1)
+								{
+									if ((num != 1 && num != 2 && num != 3 && num != 4 && k == 1) || (k != 1))
+									{
+										if (k != 1)
+										{
+											getchar();
+										}
+										printf("您输入的数字有误！！\n\n");
+										Sleep(1000);
+										system("cls");
+									}
+									else
+									{
+										printf("\n\n请稍后....");
+										Sleep(1000);
+										system("cls");
+										break;
+
+									}
+									num = NULL;
+									printf("硬件部：\n\n");
+									printf("\n1、查看近期任务\n");
+									printf("2、布置任务\n");
+									printf("3、部员管理\n");
+									printf("4、返回\n\n");
+									printf("请重新输入：");
+									k = scanf("%d", &num);
+									break;
+								}
+								switch (num)
+								{
+								case 1:
+									task(choice, num);
+									break;
+								case 2:
+									//布置任务：
+									printf("请输入任务内容：\n");
+									scanf("\t%s", t1);
+									printf("\n\n任务已布置！！");
+									Sleep(1000);
+									system("cls");
+									break;
+								case 3:
+									while (1)
+									{
+										choice1 = NULL;
+										printf("部员管理：\n");
+										printf("\n1、新部员加入\n");
+										printf("2、部员资料修改\n");
+										printf("3、部员删除\n");
+										printf("4、查看部门成员\n");
+										printf("5、返回\n");
+										printf("\n\n请选择：");
+										scanf("%d", &choice1);
+										while (1)
+										{
+											if ((choice1 != 1) && (choice1 != 2) && (choice1 != 3) && (choice1 != 4) && (choice1 != 5)/*&&(scanf("%d",&choice)!=1)*/)
+											{
+												getchar();
+												system("cls");
+												printf("部员管理：\n");
+												printf("\n1、新部员加入\n");
+												printf("2、部员资料修改\n");
+												printf("3、部员删除\n");
+												printf("4、查看部门成员\n");
+												printf("5、返回\n");
+												printf("\n\n输入错误！！\n");
+												printf("请重新输入：");
+												scanf("%d", &choice1);
+												if ((choice1 == 1) || (choice1 == 2) || (choice1 == 3) || (choice1 == 4) || (choice1 == 5))
+												{
+													break;
+												}
+											}
+											else
+											{
+												break;
+											}
+										}
+
+										if (choice1 == 5)
+										{
+											break;
+										}
+										char name_change[20] = "";
+										char name[100] = "";
+										switch (choice1)
+										{
+										case 1:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											while(1)
+                                                                                        {
+                                                                                                printf("\n请输入新成员的个人信息：\n姓名\t\t学号\t\t电话\t\tQQ\t\t部门编号\n");
+                                                                                                scanf("%s %s %s %s %d", info1.name, info1.num, info1.tele, info1.qq,&info1.department_num);
+                                                                                                if (info1.department_num>7 ||  info1.department_num<1)
+                                                                                                {
+                                                                                                        printf("\n\n部门编号输入错误！！请重新输入！！");
+                                                                                                        Sleep(500);
+                                                                                                        system("cls");
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                        break;
+                                                                                                }
+                                                                                        }
+											insertNode(List1, info1);
+											printf("\n\n输入成功！！");
+											Sleep(1000);
+											system("cls");
+											break;
+										case 2:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											printf("请输入您要修改的成员名称：");
+											scanf("%s", name_change);
+											List1 = changeNode(List1, name_change, info1, p1);
+											break;
+										case 3:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											printf("请输入您要删除的学生姓名：");
+											scanf("%s", name);
+											deleteNode(List1, name);
+											Sleep(1000);
+											system("cls");
+											break;
+										case 4:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											printList(List1,choice,info1);
+											printf("\n\n");
+											if (system("pause"))
+											{
+												system("cls");
+
+											}
+											system("cls");
+											break;
+										}
+									}
+									break;
+								case 4:
+									break;
+								}
+								break;
+                                                        }
+						}
 						break;
 					case 4:
-						Sleep(1000);
-						system("cls");
-						printf("设计部：\n\n");
+						while (1)
+						{
+							Sleep(1000);
+							system("cls");
+							num = NULL;
+							printf("设计部：\n\n");
+							printf("\n1、查看近期任务\n");
+							printf("2、布置任务\n");
+							printf("3、部员管理\n");
+							printf("4、返回\n\n");
+							printf("请选择：");
+							k = scanf("%d", &num);
+							if (num == 4)
+							{
+								printf("\n\n请稍候，正在返回...");
+								Sleep(1000);
+								system("cls");
+								break;
+							}
+							while (1)
+							{
+								while (1)
+								{
+									if ((num != 1 && num != 2 && num != 3 && num != 4 && k == 1) || (k != 1))
+									{
+										if (k != 1)
+										{
+											getchar();
+										}
+										printf("您输入的数字有误！！\n\n");
+										Sleep(1000);
+										system("cls");
+									}
+									else
+									{
+										printf("\n\n请稍后....");
+										Sleep(1000);
+										system("cls");
+										break;
+
+									}
+									num = NULL;
+									printf("设计部：\n\n");
+									printf("\n1、查看近期任务\n");
+									printf("2、布置任务\n");
+									printf("3、部员管理\n");
+									printf("4、返回\n\n");
+									printf("请重新输入：");
+									k = scanf("%d", &num);
+									break;
+								}
+								switch (num)
+								{
+								case 1:
+									task(choice, num);
+									break;
+								case 2:
+									//布置任务：
+									printf("请输入任务内容：\n");
+									scanf("\t%s", t1);
+									printf("\n\n任务已布置！！");
+									Sleep(1000);
+									system("cls");
+									break;
+								case 3:
+									while (1)
+									{
+										choice1 = NULL;
+										printf("部员管理：\n");
+										printf("\n1、新部员加入\n");
+										printf("2、部员资料修改\n");
+										printf("3、部员删除\n");
+										printf("4、查看部门成员\n");
+										printf("5、返回\n");
+										printf("\n\n请选择：");
+										scanf("%d", &choice1);
+										while (1)
+										{
+											if ((choice1 != 1) && (choice1 != 2) && (choice1 != 3) && (choice1 != 4) && (choice1 != 5)/*&&(scanf("%d",&choice)!=1)*/)
+											{
+												getchar();
+												system("cls");
+												printf("部员管理：\n");
+												printf("\n1、新部员加入\n");
+												printf("2、部员资料修改\n");
+												printf("3、部员删除\n");
+												printf("4、查看部门成员\n");
+												printf("5、返回\n");
+												printf("\n\n输入错误！！\n");
+												printf("请重新输入：");
+												scanf("%d", &choice1);
+												if ((choice1 == 1) || (choice1 == 2) || (choice1 == 3) || (choice1 == 4) || (choice1 == 5))
+												{
+													break;
+												}
+											}
+											else
+											{
+												break;
+											}
+										}
+
+										if (choice1 == 5)
+										{
+											break;
+										}
+										char name_change[20] = "";
+										char name[100] = "";
+										switch (choice1)
+										{
+										case 1:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											while(1)
+                                                                                        {
+                                                                                                printf("\n请输入新成员的个人信息：\n姓名\t\t学号\t\t电话\t\tQQ\t\t部门编号\n");
+                                                                                                scanf("%s %s %s %s %d", info1.name, info1.num, info1.tele, info1.qq,&info1.department_num);
+                                                                                                if (info1.department_num>7 ||  info1.department_num<1)
+                                                                                                {
+                                                                                                        printf("\n\n部门编号输入错误！！请重新输入！！");
+                                                                                                        Sleep(500);
+                                                                                                        system("cls");
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                        break;
+                                                                                                }
+                                                                                        }
+											insertNode(List1, info1);
+											printf("\n\n输入成功！！");
+											Sleep(1000);
+											system("cls");
+											break;
+										case 2:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											printf("请输入您要修改的成员名称：");
+											scanf("%s", name_change);
+											List1 = changeNode(List1, name_change, info1, p1);
+											break;
+										case 3:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											printf("请输入您要删除的学生姓名：");
+											scanf("%s", name);
+											deleteNode(List1, name);
+											Sleep(1000);
+											system("cls");
+											break;
+										case 4:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											printList(List1,choice,info1);
+											printf("\n\n");
+											if (system("pause"))
+											{
+												system("cls");
+
+											}
+											system("cls");
+											break;
+										}
+									}
+									break;
+								case 4:
+									break;
+								}
+								break;
+                                                        }
+						}
 						break;
 					case 5:
-						Sleep(1000);
-						system("cls");
-						printf("运营部：\n\n");
+						while (1)
+						{
+							Sleep(1000);
+							system("cls");
+							num = NULL;
+							printf("运营部：\n\n");
+							printf("\n1、查看近期任务\n");
+							printf("2、布置任务\n");
+							printf("3、部员管理\n");
+							printf("4、返回\n\n");
+							printf("请选择：");
+							k = scanf("%d", &num);
+							if (num == 4)
+							{
+								printf("\n\n请稍候，正在返回...");
+								Sleep(1000);
+								system("cls");
+								break;
+							}
+							while (1)
+							{
+								while (1)
+								{
+									if ((num != 1 && num != 2 && num != 3 && num != 4 && k == 1) || (k != 1))
+									{
+										if (k != 1)
+										{
+											getchar();
+										}
+										printf("您输入的数字有误！！\n\n");
+										Sleep(1000);
+										system("cls");
+									}
+									else
+									{
+										printf("\n\n请稍后....");
+										Sleep(1000);
+										system("cls");
+										break;
+
+									}
+									num = NULL;
+									printf("运营部：\n\n");
+									printf("\n1、查看近期任务\n");
+									printf("2、布置任务\n");
+									printf("3、部员管理\n");
+									printf("4、返回\n\n");
+									printf("请重新输入：");
+									k = scanf("%d", &num);
+									break;
+								}
+								switch (num)
+								{
+								case 1:
+									task(choice, num);
+									break;
+								case 2:
+									//布置任务：
+									printf("请输入任务内容：\n");
+									scanf("\t%s", t1);
+									printf("\n\n任务已布置！！");
+									Sleep(1000);
+									system("cls");
+									break;
+								case 3:
+									while (1)
+									{
+										choice1 = NULL;
+										printf("部员管理：\n");
+										printf("\n1、新部员加入\n");
+										printf("2、部员资料修改\n");
+										printf("3、部员删除\n");
+										printf("4、查看部门成员\n");
+										printf("5、返回\n");
+										printf("\n\n请选择：");
+										scanf("%d", &choice1);
+										while (1)
+										{
+											if ((choice1 != 1) && (choice1 != 2) && (choice1 != 3) && (choice1 != 4) && (choice1 != 5)/*&&(scanf("%d",&choice)!=1)*/)
+											{
+												getchar();
+												system("cls");
+												printf("部员管理：\n");
+												printf("\n1、新部员加入\n");
+												printf("2、部员资料修改\n");
+												printf("3、部员删除\n");
+												printf("4、查看部门成员\n");
+												printf("5、返回\n");
+												printf("\n\n输入错误！！\n");
+												printf("请重新输入：");
+												scanf("%d", &choice1);
+												if ((choice1 == 1) || (choice1 == 2) || (choice1 == 3) || (choice1 == 4) || (choice1 == 5))
+												{
+													break;
+												}
+											}
+											else
+											{
+												break;
+											}
+										}
+
+										if (choice1 == 5)
+										{
+											break;
+										}
+										char name_change[20] = "";
+										char name[100] = "";
+										switch (choice1)
+										{
+										case 1:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											while(1)
+                                                                                        {
+                                                                                                printf("\n请输入新成员的个人信息：\n姓名\t\t学号\t\t电话\t\tQQ\t\t部门编号\n");
+                                                                                                scanf("%s %s %s %s %d", info1.name, info1.num, info1.tele, info1.qq,&info1.department_num);
+                                                                                                if (info1.department_num>7 ||  info1.department_num<1)
+                                                                                                {
+                                                                                                        printf("\n\n部门编号输入错误！！请重新输入！！");
+                                                                                                        Sleep(500);
+                                                                                                        system("cls");
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                        break;
+                                                                                                }
+                                                                                        }
+											insertNode(List1, info1);
+											printf("\n\n输入成功！！");
+											Sleep(1000);
+											system("cls");
+											break;
+										case 2:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											printf("请输入您要修改的成员名称：");
+											scanf("%s", name_change);
+											List1 = changeNode(List1, name_change, info1, p1);
+											break;
+										case 3:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											printf("请输入您要删除的学生姓名：");
+											scanf("%s", name);
+											deleteNode(List1, name);
+											Sleep(1000);
+											system("cls");
+											break;
+										case 4:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											printList(List1,choice,info1);
+											printf("\n\n");
+											if (system("pause"))
+											{
+												system("cls");
+
+											}
+											system("cls");
+											break;
+										}
+									}
+									break;
+								case 4:
+									break;
+								}
+								break;
+                                                        }
+						}
 						break;
 					case 6:
-						Sleep(1000);
-						system("cls");
-						printf("产品部：\n\n");
+						while (1)
+						{
+							Sleep(1000);
+							system("cls");
+							num = NULL;
+							printf("产品部：\n\n");
+							printf("\n1、查看近期任务\n");
+							printf("2、布置任务\n");
+							printf("3、部员管理\n");
+							printf("4、返回\n\n");
+							printf("请选择：");
+							k = scanf("%d", &num);
+							if (num == 4)
+							{
+								printf("\n\n请稍候，正在返回...");
+								Sleep(1000);
+								system("cls");
+								break;
+							}
+							while (1)
+							{
+								while (1)
+								{
+									if ((num != 1 && num != 2 && num != 3 && num != 4 && k == 1) || (k != 1))
+									{
+										if (k != 1)
+										{
+											getchar();
+										}
+										printf("您输入的数字有误！！\n\n");
+										Sleep(1000);
+										system("cls");
+									}
+									else
+									{
+										printf("\n\n请稍后....");
+										Sleep(1000);
+										system("cls");
+										break;
+
+									}
+									num = NULL;
+									printf("产品部：\n\n");
+									printf("\n1、查看近期任务\n");
+									printf("2、布置任务\n");
+									printf("3、部员管理\n");
+									printf("4、返回\n\n");
+									printf("请重新输入：");
+									k = scanf("%d", &num);
+									break;
+								}
+								switch (num)
+								{
+								case 1:
+									task(choice, num);
+									break;
+								case 2:
+									//布置任务：
+									printf("请输入任务内容：\n");
+									scanf("\t%s", t1);
+									printf("\n\n任务已布置！！");
+									Sleep(1000);
+									system("cls");
+									break;
+								case 3:
+									while (1)
+									{
+										choice1 = NULL;
+										printf("部员管理：\n");
+										printf("\n1、新部员加入\n");
+										printf("2、部员资料修改\n");
+										printf("3、部员删除\n");
+										printf("4、查看部门成员\n");
+										printf("5、返回\n");
+										printf("\n\n请选择：");
+										scanf("%d", &choice1);
+										while (1)
+										{
+											if ((choice1 != 1) && (choice1 != 2) && (choice1 != 3) && (choice1 != 4) && (choice1 != 5)/*&&(scanf("%d",&choice)!=1)*/)
+											{
+												getchar();
+												system("cls");
+												printf("部员管理：\n");
+												printf("\n1、新部员加入\n");
+												printf("2、部员资料修改\n");
+												printf("3、部员删除\n");
+												printf("4、查看部门成员\n");
+												printf("5、返回\n");
+												printf("\n\n输入错误！！\n");
+												printf("请重新输入：");
+												scanf("%d", &choice1);
+												if ((choice1 == 1) || (choice1 == 2) || (choice1 == 3) || (choice1 == 4) || (choice1 == 5))
+												{
+													break;
+												}
+											}
+											else
+											{
+												break;
+											}
+										}
+
+										if (choice1 == 5)
+										{
+											break;
+										}
+										char name_change[20] = "";
+										char name[100] = "";
+										switch (choice1)
+										{
+										case 1:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											while(1)
+                                                                                        {
+                                                                                                printf("\n请输入新成员的个人信息：\n姓名\t\t学号\t\t电话\t\tQQ\t\t部门编号\n");
+                                                                                                scanf("%s %s %s %s %d", info1.name, info1.num, info1.tele, info1.qq,&info1.department_num);
+                                                                                                if (info1.department_num>7 ||  info1.department_num<1)
+                                                                                                {
+                                                                                                        printf("\n\n部门编号输入错误！！请重新输入！！");
+                                                                                                        Sleep(500);
+                                                                                                        system("cls");
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                        break;
+                                                                                                }
+                                                                                        }
+											insertNode(List1, info1);
+											printf("\n\n输入成功！！");
+											Sleep(1000);
+											system("cls");
+											break;
+										case 2:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											printf("请输入您要修改的成员名称：");
+											scanf("%s", name_change);
+											List1 = changeNode(List1, name_change, info1, p1);
+											break;
+										case 3:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											printf("请输入您要删除的学生姓名：");
+											scanf("%s", name);
+											deleteNode(List1, name);
+											Sleep(1000);
+											system("cls");
+											break;
+										case 4:
+											printf("\n\n请稍候...");
+											Sleep(1000);
+											system("cls");
+											printList(List1,choice,info1);
+											printf("\n\n");
+											if (system("pause"))
+											{
+												system("cls");
+
+											}
+											system("cls");
+											break;
+										}
+									}
+									break;
+								case 4:
+									break;
+								}
+								break;
+                                                        }
+						}
 						break;
 					default:
 						Sleep(1000);
